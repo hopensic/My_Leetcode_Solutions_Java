@@ -1,4 +1,5 @@
-package list_stack_queue.util;
+package util.list_stack_queue;
+
 
 public class MyArrayList<T> implements Iterable<T> {
 
