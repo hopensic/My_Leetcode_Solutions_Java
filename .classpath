@@ -6,5 +6,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/guava-14.0.1.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
