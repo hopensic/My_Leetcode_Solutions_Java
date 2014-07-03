@@ -9,7 +9,7 @@ public class MyLinkedList<T> implements Iterable<T> {
 		clear();
 	}
 
-	private static class Node<T> {
+	public static class Node<T> {
 		public Node(T d, Node<T> p, Node<T> n) {
 			data = d;
 			prev = p;
@@ -57,7 +57,12 @@ public class MyLinkedList<T> implements Iterable<T> {
 
 	}
 
-	private void addBefore(Node<T> p, T x) {
+	protected void addFirst(T x) {
+		Node<T> firstNode = getNode(0);
+		addBefore(firstNode, x);
+	}
+
+	protected void addBefore(Node<T> p, T x) {
 		Node<T> newNode = new Node<>(x, p.prev, p);
 		newNode.prev.next = newNode;
 		p.prev = newNode;
@@ -65,7 +70,12 @@ public class MyLinkedList<T> implements Iterable<T> {
 		modCount++;
 	}
 
-	private T remove(Node<T> p) {
+	protected T removeNode(int idx) {
+		Node<T> p = getNode(idx);
+		return remove(p);
+	}
+
+	protected T remove(Node<T> p) {
 		p.next.prev = p.prev;
 		p.prev.next = p.next;
 		theSize--;
@@ -73,11 +83,11 @@ public class MyLinkedList<T> implements Iterable<T> {
 		return p.data;
 	}
 
-	private Node<T> getNode(int idx) {
+	protected Node<T> getNode(int idx) {
 		return getNode(idx, 0, size() - 1);
 	}
 
-	private Node<T> getNode(int idx, int lower, int upper) {
+	protected Node<T> getNode(int idx, int lower, int upper) {
 		Node<T> p;
 		if (idx < lower || idx > upper)
 			throw new IndexOutOfBoundsException();
@@ -107,7 +117,7 @@ public class MyLinkedList<T> implements Iterable<T> {
 
 	@Override
 	public Iterator<T> iterator() {
-		return null;
+		return new LinkedListIterator();
 	}
 
 	private int theSize;
