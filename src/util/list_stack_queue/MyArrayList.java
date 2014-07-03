@@ -49,6 +49,7 @@ public class MyArrayList<T> implements Iterable<T> {
 		return old;
 	}
 
+	@SuppressWarnings("unchecked")
 	public void ensureCapacity(int newCapacity) {
 		if (newCapacity < theSize)
 			return;
@@ -83,7 +84,7 @@ public class MyArrayList<T> implements Iterable<T> {
 		return removedItem;
 	}
 
-	public Iterator iterator() {
+	public Iterator<T> iterator() {
 		return new ArrayListIterator();
 	}
 
