@@ -1,6 +1,8 @@
 package util.list_stack_queue;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class MyLinkedList<T> implements Iterable<T> {
 	public MyLinkedList() {
@@ -20,12 +22,59 @@ public class MyLinkedList<T> implements Iterable<T> {
 
 	}
 
+	private class LinkedListIterator implements Iterator<T> {
+
+		private Node<T> current = beginMarker.next;
+		private int expectedModCount = modCount;
+		private boolean okToRemove = false;
+
+		@Override
+		public boolean hasNext() {
+			return current != endMarker;
+		}
+
+		@Override
+		public T next() {
+			if (modCount != expectedModCount)
+				throw new ConcurrentModificationException();
+			if (!hasNext())
+				throw new NoSuchElementException();
+			T nextItem = current.data;
+			current = current.next;
+			okToRemove = true;
+			return nextItem;
+		}
+
+		@Override
+		public void remove() {
+			if (modCount != expectedModCount)
+				throw new ConcurrentModificationException();
+			if (!okToRemove)
+				throw new IllegalStateException();
+			MyLinkedList.this.remove(current.prev);
+			okToRemove = false;
+		}
+
+	}
+
 	private void addBefore(Node<T> p, T x) {
 		Node<T> newNode = new Node<>(x, p.prev, p);
 		newNode.prev.next = newNode;
 		p.prev = newNode;
 		theSize++;
 		modCount++;
+	}
+
+	private T remove(Node<T> p) {
+		p.next.prev = p.prev;
+		p.prev.next = p.next;
+		theSize--;
+		modCount++;
+		return p.data;
+	}
+
+	private Node<T> getNode(int idx) {
+		return getNode(idx, 0, size() - 1);
 	}
 
 	private Node<T> getNode(int idx, int lower, int upper) {
