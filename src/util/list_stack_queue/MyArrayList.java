@@ -3,12 +3,12 @@ package util.list_stack_queue;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+
 public class MyArrayList<T> implements Iterable<T> {
-	private static final int DEFAULT_CAPACITY = 10;
 
-	private int theSize;
-
-	private T[] theItems;
+	private static final int DEFAULT_CAPACITY = 10; // default List size
+	private int theSize; // the current size of the List
+	private T[] theItems;// the current Items of the List
 
 	public MyArrayList() {
 		doClear();
@@ -18,6 +18,9 @@ public class MyArrayList<T> implements Iterable<T> {
 		doClear();
 	}
 
+	/**
+	 * 
+	 */
 	private void doClear() {
 		theSize = 0;
 		ensureCapacity(DEFAULT_CAPACITY);
@@ -88,6 +91,12 @@ public class MyArrayList<T> implements Iterable<T> {
 		return new ArrayListIterator();
 	}
 
+	public void print() {
+		Iterator<T> iteraotr = this.iterator();
+		while (iteraotr.hasNext())
+			System.out.println(iteraotr.next());
+	}
+
 	private class ArrayListIterator implements Iterator<T> {
 
 		private int current = 0;
@@ -108,7 +117,6 @@ public class MyArrayList<T> implements Iterable<T> {
 		public void remove() {
 			MyArrayList.this.remove(--current);
 		}
-
 	}
 
 	public static void main(String[] args) {
@@ -116,12 +124,7 @@ public class MyArrayList<T> implements Iterable<T> {
 		list.add(1);
 		list.add(2);
 		list.add(3);
-		Iterator<Integer> iterator = list.iterator();
-		while (iterator.hasNext()) {
-			if (iterator.next() == 2)
-				System.out.println(11);
-		}
-
+		list.print();
 	}
 
 }
