@@ -16,6 +16,10 @@ public class MyLinkedList<T> implements Iterable<T> {
 			next = n;
 		}
 
+		public T getData() {
+			return this.data;
+		}
+
 		public T data;
 		public Node<T> prev;
 		public Node<T> next;
@@ -58,8 +62,16 @@ public class MyLinkedList<T> implements Iterable<T> {
 	}
 
 	protected void addFirst(T x) {
-		Node<T> firstNode = getNode(0);
+		Node<T> firstNode;
+		if (theSize == 0)
+			firstNode = endMarker;
+		else
+			firstNode = getNode(0);
 		addBefore(firstNode, x);
+	}
+
+	protected void addLast(T x) {
+		addBefore(endMarker, x);
 	}
 
 	protected void addBefore(Node<T> p, T x) {
@@ -115,6 +127,12 @@ public class MyLinkedList<T> implements Iterable<T> {
 		modCount = 0;
 	}
 
+	public void print() {
+		Iterator<T> iterator = this.iterator();
+		while (iterator.hasNext())
+			System.out.println(iterator.next());
+	}
+
 	@Override
 	public Iterator<T> iterator() {
 		return new LinkedListIterator();
@@ -125,4 +143,14 @@ public class MyLinkedList<T> implements Iterable<T> {
 	private Node<T> beginMarker;
 	private Node<T> endMarker;
 
+	public static void main(String[] args) {
+		MyLinkedList<Integer> list = new MyLinkedList<Integer>();
+		list.addFirst(3);
+		list.addFirst(2);
+		list.addLast(5);
+		list.addFirst(1);
+		list.addLast(4);
+		list.removeNode(0);
+//		System.out.println(list.getNode(4).getData());
+	}
 }
