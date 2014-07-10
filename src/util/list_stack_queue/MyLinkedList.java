@@ -75,7 +75,7 @@ public class MyLinkedList<T> implements Iterable<T> {
 	}
 
 	protected void addBefore(Node<T> p, T x) {
-		Node<T> newNode = new Node<>(x, p.prev, p);
+		Node<T> newNode = new Node<T>(x, p.prev, p);
 		newNode.prev.next = newNode;
 		p.prev = newNode;
 		theSize++;
