@@ -3,7 +3,6 @@ package util.list_stack_queue;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-
 public class MyArrayList<T> implements Iterable<T> {
 
 	private static final int DEFAULT_CAPACITY = 10; // default List size
@@ -91,10 +90,10 @@ public class MyArrayList<T> implements Iterable<T> {
 		return new ArrayListIterator();
 	}
 
-	public void print() {
+	public  void print() {
 		Iterator<T> iteraotr = this.iterator();
 		while (iteraotr.hasNext())
-			System.out.println(iteraotr.next());
+			System.out.print(iteraotr.next() + ",");
 	}
 
 	private class ArrayListIterator implements Iterator<T> {

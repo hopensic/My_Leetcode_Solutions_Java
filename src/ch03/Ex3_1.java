@@ -1,23 +1,31 @@
 package ch03;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.commons.lang3.ArrayUtils;
+
+import util.list_stack_queue.DataList;
+import util.list_stack_queue.DataList.CanBeSame;
+import util.list_stack_queue.DataList.Order;
 
 public class Ex3_1 {
 
 	public static void main(String[] args) {
-		ArrayList<Integer> L = new ArrayList<Integer>();
-		for (int i = 0; i < 8; i++)
-			L.add(i + 1);
-		ArrayList<Integer> P = new ArrayList<Integer>();
-		P.add(7);
-		P.add(13);
-		P.add(14);
-		P.add(16);
-		printLots(L, P);
+		int[] l_array = DataList.makeIntArray(Order.ASCEND);
+		int[] p_array = DataList.makeIntArray(4, Order.ASCEND, CanBeSame.NO_SAME, 10);
+
+		List listL = Arrays.asList(ArrayUtils.toObject(l_array));
+		List listP = Arrays.asList(ArrayUtils.toObject(p_array));
+		DataList.print(listL);
+		System.out.println();
+		DataList.print(listP);
+		System.out.println();
+		printLots(listL, listP);
 
 	}
 
-	public static void printLots(ArrayList<Integer> L, ArrayList<Integer> P) {
+	public static void printLots(List<Integer> L, List<Integer> P) {
 		int lenL = L.size();
 		int lenP = P.size();
 		if (lenL == 0)
@@ -27,15 +35,13 @@ public class Ex3_1 {
 		if (lenL - 1 < P.get(0))
 			return;
 
-		int lastIndexofP = -1;
 		int i;
 		for (i = lenP - 1; i >= 0; i--) {
 			if (lenL - 1 >= P.get(i))
 				break;
 		}
-		lastIndexofP = P.get(i);
 		for (int j = 0; j < i + 1; j++) {
-			System.out.print(L.get(P.get(j)) + ",");
+			System.out.print(L.get(P.get(j)) + "->");
 		}
 
 	}

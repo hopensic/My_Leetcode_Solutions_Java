@@ -130,7 +130,7 @@ public class MyLinkedList<T> implements Iterable<T> {
 	public void print() {
 		Iterator<T> iterator = this.iterator();
 		while (iterator.hasNext())
-			System.out.println(iterator.next());
+			System.out.println(iterator.next() + ",");
 	}
 
 	@Override
@@ -151,6 +151,6 @@ public class MyLinkedList<T> implements Iterable<T> {
 		list.addFirst(1);
 		list.addLast(4);
 		list.removeNode(0);
-//		System.out.println(list.getNode(4).getData());
+		// System.out.println(list.getNode(4).getData());
 	}
 }
