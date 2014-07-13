@@ -75,6 +75,12 @@ public class MyArrayList<T> implements Iterable<T> {
 		theSize++;
 
 	}
+	
+	
+	
+	public void addAll(Iterable<? extends T> items){
+	}
+	
 
 	public T remove(int idx) {
 		if (idx < 0 || idx >= size())
