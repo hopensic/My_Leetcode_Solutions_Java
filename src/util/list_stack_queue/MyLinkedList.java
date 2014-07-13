@@ -61,7 +61,15 @@ public class MyLinkedList<T> implements Iterable<T> {
 
 	}
 
-	protected void addFirst(T x) {
+	public boolean contains(T x) {
+		Iterator<T> iterator = this.iterator();
+		while (iterator.hasNext())
+			if (iterator.next().equals(x))
+				return true;
+		return false;
+	}
+
+	public void addFirst(T x) {
 		Node<T> firstNode;
 		if (theSize == 0)
 			firstNode = endMarker;
@@ -70,11 +78,11 @@ public class MyLinkedList<T> implements Iterable<T> {
 		addBefore(firstNode, x);
 	}
 
-	protected void addLast(T x) {
+	public void addLast(T x) {
 		addBefore(endMarker, x);
 	}
 
-	protected void addBefore(Node<T> p, T x) {
+	public void addBefore(Node<T> p, T x) {
 		Node<T> newNode = new Node<T>(x, p.prev, p);
 		newNode.prev.next = newNode;
 		p.prev = newNode;
@@ -82,12 +90,12 @@ public class MyLinkedList<T> implements Iterable<T> {
 		modCount++;
 	}
 
-	protected T removeNode(int idx) {
+	public T removeNode(int idx) {
 		Node<T> p = getNode(idx);
 		return remove(p);
 	}
 
-	protected T remove(Node<T> p) {
+	public T remove(Node<T> p) {
 		p.next.prev = p.prev;
 		p.prev.next = p.next;
 		theSize--;
@@ -95,11 +103,11 @@ public class MyLinkedList<T> implements Iterable<T> {
 		return p.data;
 	}
 
-	protected Node<T> getNode(int idx) {
+	public Node<T> getNode(int idx) {
 		return getNode(idx, 0, size() - 1);
 	}
 
-	protected Node<T> getNode(int idx, int lower, int upper) {
+	public Node<T> getNode(int idx, int lower, int upper) {
 		Node<T> p;
 		if (idx < lower || idx > upper)
 			throw new IndexOutOfBoundsException();
@@ -130,12 +138,20 @@ public class MyLinkedList<T> implements Iterable<T> {
 	public void print() {
 		Iterator<T> iterator = this.iterator();
 		while (iterator.hasNext())
-			System.out.println(iterator.next() + ",");
+			System.out.print(iterator.next() + ",");
 	}
 
 	@Override
 	public Iterator<T> iterator() {
 		return new LinkedListIterator();
+	}
+
+	public Node<T> getBeginMarker() {
+		return beginMarker;
+	}
+
+	public Node<T> getEndMarker() {
+		return endMarker;
 	}
 
 	private int theSize;
@@ -151,6 +167,7 @@ public class MyLinkedList<T> implements Iterable<T> {
 		list.addFirst(1);
 		list.addLast(4);
 		list.removeNode(0);
-		// System.out.println(list.getNode(4).getData());
+		list.contains(5);
+		list.print();
 	}
 }
