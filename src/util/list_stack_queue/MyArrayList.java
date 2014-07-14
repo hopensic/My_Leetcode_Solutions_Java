@@ -1,5 +1,6 @@
 package util.list_stack_queue;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -75,12 +76,28 @@ public class MyArrayList<T> implements Iterable<T> {
 		theSize++;
 
 	}
-	
-	
-	
-	public void addAll(Iterable<? extends T> items){
+
+	public void addAll(Iterable<? extends T> items) {
+		Iterator<? extends T> iter = items.iterator();
+		T x;
+		while (iter.hasNext()) {
+			x = iter.next();
+			add(x);
+		}
 	}
-	
+
+	public void removeAll(Iterable<? extends T> items) {
+		Iterator<? extends T> iter = items.iterator();
+		T x;
+		while (iter.hasNext()) {
+			x = iter.next();
+			Iterator<T> it = this.iterator();
+			while (it.hasNext())
+				if (x.equals(it.next()))
+					it.remove();
+		}
+
+	}
 
 	public T remove(int idx) {
 		if (idx < 0 || idx >= size())
@@ -96,7 +113,7 @@ public class MyArrayList<T> implements Iterable<T> {
 		return new ArrayListIterator();
 	}
 
-	public  void print() {
+	public void print() {
 		Iterator<T> iteraotr = this.iterator();
 		while (iteraotr.hasNext())
 			System.out.print(iteraotr.next() + ",");
@@ -126,9 +143,16 @@ public class MyArrayList<T> implements Iterable<T> {
 
 	public static void main(String[] args) {
 		MyArrayList<Integer> list = new MyArrayList<Integer>();
+		ArrayList a = new ArrayList();
 		list.add(1);
 		list.add(2);
 		list.add(3);
+		a.add(4);
+		a.add(5);
+		a.add(6);
+		a.add(1);
+		a.add(2);
+		list.removeAll(a);
 		list.print();
 	}
 

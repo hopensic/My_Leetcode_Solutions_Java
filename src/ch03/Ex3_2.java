@@ -10,10 +10,13 @@ public class Ex3_2 {
 		list.add(1);
 		list.add(2);
 		list.add(3);
+		
 		list2.add(4);
 		list2.add(5);
 		list2.add(6);
-		list.addAll(list2);
+		list2.add(2);
+		list2.add(3);
+		list2.removeAll(list);
 		System.out.println("");
 		
 	}
