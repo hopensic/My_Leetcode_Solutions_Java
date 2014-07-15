@@ -4,7 +4,10 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import util.list_stack_queue.DataList.Order;
+
 public class MyLinkedList<T> implements Iterable<T> {
+
 	public MyLinkedList() {
 		clear();
 	}
@@ -161,13 +164,13 @@ public class MyLinkedList<T> implements Iterable<T> {
 
 	public static void main(String[] args) {
 		MyLinkedList<Integer> list = new MyLinkedList<Integer>();
-		list.addFirst(3);
 		list.addFirst(2);
-		list.addLast(5);
 		list.addFirst(1);
-		list.addLast(4);
-		list.removeNode(0);
-		list.contains(5);
+		list.addLast(3);
+		Iterator<Integer> iter = list.iterator();
+		while (iter.hasNext())
+			if (iter.next() == 2)
+				iter.remove();
 		list.print();
 	}
 }

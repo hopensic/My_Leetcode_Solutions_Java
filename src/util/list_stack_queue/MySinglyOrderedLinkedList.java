@@ -5,15 +5,15 @@ import java.util.NoSuchElementException;
 
 import util.list_stack_queue.DataList.Order;
 
-public class MySinglyLinkedList<T> implements Iterable<T> {
+public class MySinglyOrderedLinkedList<T extends Comparable<? super T>> implements Iterable<T> {
 	private Order order;
 
-	public MySinglyLinkedList(Order order) {
+	public MySinglyOrderedLinkedList(Order order) {
 		this.order = order;
 		clear();
 	}
 
-	public MySinglyLinkedList() {
+	public MySinglyOrderedLinkedList() {
 		this(Order.RANDOM);
 	}
 
@@ -66,7 +66,7 @@ public class MySinglyLinkedList<T> implements Iterable<T> {
 			// throw new ConcurrentModificationException();
 			if (!okToRemove)
 				throw new IllegalStateException();
-			MySinglyLinkedList.this.remove(current, previous);
+			MySinglyOrderedLinkedList.this.remove(current, previous);
 			okToRemove = false;
 		}
 

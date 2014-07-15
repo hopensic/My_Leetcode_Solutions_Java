@@ -143,16 +143,13 @@ public class MyArrayList<T> implements Iterable<T> {
 
 	public static void main(String[] args) {
 		MyArrayList<Integer> list = new MyArrayList<Integer>();
-		ArrayList a = new ArrayList();
 		list.add(1);
 		list.add(2);
 		list.add(3);
-		a.add(4);
-		a.add(5);
-		a.add(6);
-		a.add(1);
-		a.add(2);
-		list.removeAll(a);
+		Iterator<Integer> iter = list.iterator();
+		while (iter.hasNext())
+			if (iter.next() == 2)
+				iter.remove();
 		list.print();
 	}
 
