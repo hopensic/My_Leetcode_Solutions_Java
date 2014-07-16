@@ -24,6 +24,7 @@ public class MyStack<T> extends MyLinkedList<T> {
 		stack.push(3);
 		stack.pop();
 		stack.print();
+		
 	}
 
 }
