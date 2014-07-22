@@ -80,6 +80,11 @@ public class MySinglyLinkedList<T> implements Iterable<T> {
 		return false;
 	}
 
+	public void addFirstByCheck(T x) {
+		if (!contains(x))
+			addFirst(x);
+	}
+
 	public void addFirst(T x) {
 		addAfter(beginMarker, x);
 	}
@@ -175,6 +180,7 @@ public class MySinglyLinkedList<T> implements Iterable<T> {
 		list.addLast(5);
 		list.addLast(6);
 		list.removeNode(5);
+		list.addFirstByCheck(22);
 		list.print();
 
 	}
