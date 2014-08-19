@@ -21,7 +21,7 @@ public final class DataList {
 
 	/**
 	 * 
-	 * If the number rocedured by the methods could be the same<br/>
+	 * If the number produced by the methods could be the same<br/>
 	 * 是否可以重复
 	 * 
 	 */
