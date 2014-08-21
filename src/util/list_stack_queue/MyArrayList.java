@@ -1,6 +1,5 @@
 package util.list_stack_queue;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 

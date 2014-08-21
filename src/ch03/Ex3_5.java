@@ -7,14 +7,14 @@ import java.util.List;
 import org.apache.commons.lang3.ArrayUtils;
 
 import util.list_stack_queue.DataList;
-import util.list_stack_queue.DataList.CanBeSame;
+import util.list_stack_queue.DataList.CanBeRepeat;
 import util.list_stack_queue.DataList.Order;
 import util.list_stack_queue.MyArrayList;
 
 public class Ex3_5 {
 	public static void main(String[] args) {
-		int[] l_array = DataList.makeIntArray(7, Order.ASCEND, CanBeSame.NO_SAME, 15);
-		int[] p_array = DataList.makeIntArray(10, Order.ASCEND, CanBeSame.NO_SAME, 30);
+		int[] l_array = DataList.makeIntArray(7, Order.ASCEND, CanBeRepeat.NO_REPEAT, 15);
+		int[] p_array = DataList.makeIntArray(10, Order.ASCEND, CanBeRepeat.NO_REPEAT, 30);
 
 		List listL = Arrays.asList(ArrayUtils.toObject(l_array));
 		List listP = Arrays.asList(ArrayUtils.toObject(p_array));

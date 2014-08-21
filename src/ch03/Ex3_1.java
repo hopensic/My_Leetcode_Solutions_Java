@@ -6,14 +6,14 @@ import java.util.List;
 import org.apache.commons.lang3.ArrayUtils;
 
 import util.list_stack_queue.DataList;
-import util.list_stack_queue.DataList.CanBeSame;
+import util.list_stack_queue.DataList.CanBeRepeat;
 import util.list_stack_queue.DataList.Order;
 
 public class Ex3_1 {
 
 	public static void main(String[] args) {
 		int[] l_array = DataList.makeIntArray(Order.ASCEND);
-		int[] p_array = DataList.makeIntArray(4, Order.ASCEND, CanBeSame.NO_SAME, 10);
+		int[] p_array = DataList.makeIntArray(4, Order.ASCEND, CanBeRepeat.NO_REPEAT, 10);
 
 		List listL = Arrays.asList(ArrayUtils.toObject(l_array));
 		List listP = Arrays.asList(ArrayUtils.toObject(p_array));

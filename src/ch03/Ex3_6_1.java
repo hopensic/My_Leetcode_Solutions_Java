@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-import util.list_stack_queue.MyLinkedList.Node;
-
 public class Ex3_6_1 {
 
 	public static void main(String[] args) {

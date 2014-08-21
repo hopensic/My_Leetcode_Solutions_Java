@@ -4,8 +4,6 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import util.list_stack_queue.DataList.Order;
-
 public class MyLinkedList<T> implements Iterable<T> {
 
 	public MyLinkedList() {

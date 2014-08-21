@@ -14,6 +14,8 @@ public final class DataList {
 	private static Random random = new Random();
 	private static final int DEFAULT_SIZE = 10;
 	private static final int DEFAULT_MAX_NUM = 100;
+	private static final Order DEFAULT_ORDER = Order.RANDOM;
+	private static final CanBeRepeat DEFAULT_REPEAT = CanBeRepeat.CAN_REPEAT;
 
 	public enum Order {
 		RANDOM, ASCEND, DESCEND
@@ -25,8 +27,8 @@ public final class DataList {
 	 * 是否可以重复
 	 * 
 	 */
-	public enum CanBeSame {
-		CAN_SAME, NO_SAME
+	public enum CanBeRepeat {
+		CAN_REPEAT, NO_REPEAT
 	}
 
 	public static <T> void print(List<T> list) {
@@ -46,38 +48,38 @@ public final class DataList {
 	 * 
 	 */
 	public static int[] makeIntArray() {
-		return makeIntArray(DEFAULT_SIZE, Order.RANDOM, CanBeSame.CAN_SAME, DEFAULT_MAX_NUM);
+		return makeIntArray(DEFAULT_SIZE, DEFAULT_ORDER, DEFAULT_REPEAT, DEFAULT_MAX_NUM);
 	}
 
 	public static int[] makeIntArray(int size) {
-		return makeIntArray(size, Order.RANDOM, CanBeSame.CAN_SAME, DEFAULT_MAX_NUM);
+		return makeIntArray(size, Order.RANDOM, CanBeRepeat.CAN_REPEAT, DEFAULT_MAX_NUM);
 	}
 
 	public static int[] makeIntArray(Order orderflag) {
-		return makeIntArray(DEFAULT_SIZE, orderflag, CanBeSame.CAN_SAME, DEFAULT_MAX_NUM);
+		return makeIntArray(DEFAULT_SIZE, orderflag, CanBeRepeat.CAN_REPEAT, DEFAULT_MAX_NUM);
 	}
 
-	public static int[] makeIntArray(CanBeSame cansame) {
+	public static int[] makeIntArray(CanBeRepeat cansame) {
 		return makeIntArray(DEFAULT_SIZE, Order.RANDOM, cansame, DEFAULT_MAX_NUM);
 	}
 
 	public static int[] makeIntArray(int size, Order orderflag) {
-		return makeIntArray(size, orderflag, CanBeSame.CAN_SAME, DEFAULT_MAX_NUM);
+		return makeIntArray(size, orderflag, CanBeRepeat.CAN_REPEAT, DEFAULT_MAX_NUM);
 	}
 
 	public static int[] makeIntArray(int size, Order orderflag, int maxnumber) {
-		return makeIntArray(size, orderflag, CanBeSame.CAN_SAME, maxnumber);
+		return makeIntArray(size, orderflag, CanBeRepeat.CAN_REPEAT, maxnumber);
 	}
 
-	public static int[] makeIntArray(int size, Order orderflag, CanBeSame canSame, int maxNum) {
+	public static int[] makeIntArray(int size, Order orderflag, CanBeRepeat canSame, int maxNum) {
 		int[] array = new int[size];
 		switch (canSame) {
-		case CAN_SAME:
+		case CAN_REPEAT:
 			for (int i = 0; i < size; i++) {
 				array[i] = random.nextInt(maxNum);
 			}
 			break;
-		case NO_SAME:
+		case NO_REPEAT:
 			Set<Integer> set = new HashSet<Integer>();
 			while (set.size() < size) {
 				set.add(random.nextInt(maxNum));
