@@ -9,7 +9,7 @@ import java.util.Set;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-public final class DataList {
+public final class DataUtil {
 
 	private static Random random = new Random();
 	private static final int DEFAULT_SIZE = 10;
@@ -52,19 +52,19 @@ public final class DataList {
 	}
 
 	public static int[] makeIntArray(int size) {
-		return makeIntArray(size, Order.RANDOM, CanBeRepeat.CAN_REPEAT, DEFAULT_MAX_NUM);
+		return makeIntArray(size, DEFAULT_ORDER, DEFAULT_REPEAT, DEFAULT_MAX_NUM);
 	}
 
 	public static int[] makeIntArray(Order orderflag) {
-		return makeIntArray(DEFAULT_SIZE, orderflag, CanBeRepeat.CAN_REPEAT, DEFAULT_MAX_NUM);
+		return makeIntArray(DEFAULT_SIZE, orderflag, DEFAULT_REPEAT, DEFAULT_MAX_NUM);
 	}
 
 	public static int[] makeIntArray(CanBeRepeat cansame) {
-		return makeIntArray(DEFAULT_SIZE, Order.RANDOM, cansame, DEFAULT_MAX_NUM);
+		return makeIntArray(DEFAULT_SIZE, DEFAULT_ORDER, cansame, DEFAULT_MAX_NUM);
 	}
 
 	public static int[] makeIntArray(int size, Order orderflag) {
-		return makeIntArray(size, orderflag, CanBeRepeat.CAN_REPEAT, DEFAULT_MAX_NUM);
+		return makeIntArray(size, orderflag, DEFAULT_REPEAT, DEFAULT_MAX_NUM);
 	}
 
 	public static int[] makeIntArray(int size, Order orderflag, int maxnumber) {
@@ -105,6 +105,8 @@ public final class DataList {
 				array[size - i - 1] = array[i];
 				array[i] = tmp;
 			}
+			break;
+		default:
 			break;
 		}
 

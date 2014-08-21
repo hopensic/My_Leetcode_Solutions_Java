@@ -5,21 +5,21 @@ import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import util.list_stack_queue.DataList;
-import util.list_stack_queue.DataList.CanBeRepeat;
-import util.list_stack_queue.DataList.Order;
+import util.list_stack_queue.DataUtil;
+import util.list_stack_queue.DataUtil.CanBeRepeat;
+import util.list_stack_queue.DataUtil.Order;
 
 public class Ex3_1 {
 
 	public static void main(String[] args) {
-		int[] l_array = DataList.makeIntArray(Order.ASCEND);
-		int[] p_array = DataList.makeIntArray(4, Order.ASCEND, CanBeRepeat.NO_REPEAT, 10);
+		int[] l_array = DataUtil.makeIntArray(Order.ASCEND);
+		int[] p_array = DataUtil.makeIntArray(4, Order.ASCEND, CanBeRepeat.NO_REPEAT, 10);
 
 		List listL = Arrays.asList(ArrayUtils.toObject(l_array));
 		List listP = Arrays.asList(ArrayUtils.toObject(p_array));
-		DataList.print(listL);
+		DataUtil.print(listL);
 		System.out.println();
-		DataList.print(listP);
+		DataUtil.print(listP);
 		System.out.println();
 		printLots(listL, listP);
 

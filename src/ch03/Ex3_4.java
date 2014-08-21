@@ -6,22 +6,22 @@ import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import util.list_stack_queue.DataList;
-import util.list_stack_queue.DataList.CanBeRepeat;
-import util.list_stack_queue.DataList.Order;
+import util.list_stack_queue.DataUtil;
+import util.list_stack_queue.DataUtil.CanBeRepeat;
+import util.list_stack_queue.DataUtil.Order;
 import util.list_stack_queue.MyArrayList;
 
 public class Ex3_4 {
 	public static void main(String[] args) {
-		int[] l_array = DataList.makeIntArray(7, Order.ASCEND, CanBeRepeat.NO_REPEAT, 15);
-		int[] p_array = DataList.makeIntArray(20, Order.ASCEND, CanBeRepeat.CAN_REPEAT, 30);
+		int[] l_array = DataUtil.makeIntArray(7, Order.ASCEND, CanBeRepeat.NO_REPEAT, 15);
+		int[] p_array = DataUtil.makeIntArray(20, Order.ASCEND, CanBeRepeat.CAN_REPEAT, 30);
 
 		List listL = Arrays.asList(ArrayUtils.toObject(l_array));
 		List listP = Arrays.asList(ArrayUtils.toObject(p_array));
 
-		DataList.print(listL);
+		DataUtil.print(listL);
 		System.out.println();
-		DataList.print(listP);
+		DataUtil.print(listP);
 		System.out.println();
 		getIntersection(listL, listP);
 

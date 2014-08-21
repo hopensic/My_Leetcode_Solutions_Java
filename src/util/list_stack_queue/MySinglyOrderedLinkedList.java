@@ -3,9 +3,10 @@ package util.list_stack_queue;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import util.list_stack_queue.DataList.Order;
+import util.list_stack_queue.DataUtil.Order;
 
-public class MySinglyOrderedLinkedList<T extends Comparable<? super T>> implements Iterable<T> {
+public class MySinglyOrderedLinkedList<T extends Comparable<? super T>>
+		implements Iterable<T> {
 	private Order order;
 
 	public MySinglyOrderedLinkedList(Order order) {
@@ -36,7 +37,7 @@ public class MySinglyOrderedLinkedList<T extends Comparable<? super T>> implemen
 
 		private Node<T> current = beginMarker;
 		private Node<T> previous = null;
-		private int expectedModCount = modCount;
+		// private int expectedModCount = modCount;
 		private boolean okToRemove = false;
 
 		@Override
