@@ -14,8 +14,12 @@ public class MySinglyOrderedLinkedList<T extends Comparable<? super T>>
 		clear();
 	}
 
+	public Order getOrder() {
+		return order;
+	}
+
 	public MySinglyOrderedLinkedList() {
-		this(Order.RANDOM);
+		this(Order.ASCEND);
 	}
 
 	public static class Node<T> {
@@ -40,6 +44,10 @@ public class MySinglyOrderedLinkedList<T extends Comparable<? super T>>
 		// private int expectedModCount = modCount;
 		private boolean okToRemove = false;
 
+		public Node<T> getPrevious() {
+			return previous;
+		}
+
 		@Override
 		public boolean hasNext() {
 			return current.next != null;
@@ -47,8 +55,6 @@ public class MySinglyOrderedLinkedList<T extends Comparable<? super T>>
 
 		@Override
 		public T next() {
-			// if (modCount != expectedModCount)
-			// throw new ConcurrentModificationException();
 			if (!hasNext())
 				throw new NoSuchElementException();
 			if (previous == null)
@@ -63,8 +69,6 @@ public class MySinglyOrderedLinkedList<T extends Comparable<? super T>>
 
 		@Override
 		public void remove() {
-			// if (modCount != expectedModCount)
-			// throw new ConcurrentModificationException();
 			if (!okToRemove)
 				throw new IllegalStateException();
 			MySinglyOrderedLinkedList.this.remove(current, previous);
@@ -81,8 +85,48 @@ public class MySinglyOrderedLinkedList<T extends Comparable<? super T>>
 		return false;
 	}
 
+	public void add(T x) {
+		if (!contains(x)) {
+			if (size() == 0) {
+				addFirst(x);
+			} else {
+				Node<T> head = beginMarker.next;
+				Node<T> pre = beginMarker;
+				if (getOrder() == Order.ASCEND) {
+					while (head != null) {
+						if (head.data.compareTo(x) > 0) {
+							addBefore(head, pre, x);
+							break;
+						}
+						pre = head;
+						head = head.next;
+					}
+					addBefore(head, pre, x);
+				} else {
+					while (head != null) {
+						if (head.data.compareTo(x) < 0) {
+							addBefore(head, pre, x);
+							break;
+						}
+						pre = head;
+						head = head.next;
+					}
+					addBefore(head, pre, x);
+				}
+
+			}
+		}
+	}
+
 	public void addFirst(T x) {
 		addAfter(beginMarker, x);
+	}
+
+	public void addBefore(Node<T> cur, Node<T> pre, T x) {
+		Node<T> newNode = new Node<T>(x, cur);
+		pre.next = newNode;
+		theSize++;
+		modCount++;
 	}
 
 	public void addLast(T x) {
@@ -170,12 +214,17 @@ public class MySinglyOrderedLinkedList<T extends Comparable<? super T>>
 	private Node<T> beginMarker;
 
 	public static void main(String[] args) {
-		MySinglyLinkedList<Integer> list = new MySinglyLinkedList<Integer>();
-		list.addFirst(3);
-		list.addFirst(2);
-		list.addLast(5);
-		list.addLast(6);
-		list.removeNode(5);
+		MySinglyOrderedLinkedList<Integer> list = new MySinglyOrderedLinkedList<Integer>(Order.DESCEND);
+		list.add(9);
+		list.add(3);
+		list.add(6);
+		list.add(5);
+
+		// list.addFirst(3);
+		// list.addFirst(2);
+		// list.addLast(5);
+		// list.addLast(6);
+		// list.removeNode(5);
 		list.print();
 
 	}
