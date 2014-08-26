@@ -1,6 +1,7 @@
 package util.list_stack_queue;
 
 import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 public class MyArrayList<T> implements Iterable<T> {
@@ -108,7 +109,7 @@ public class MyArrayList<T> implements Iterable<T> {
 		return removedItem;
 	}
 
-	public Iterator<T> iterator() {
+	public ListIterator<T> iterator() {
 		return new ArrayListIterator();
 	}
 
@@ -118,7 +119,7 @@ public class MyArrayList<T> implements Iterable<T> {
 			System.out.print(iteraotr.next() + ",");
 	}
 
-	private class ArrayListIterator implements Iterator<T> {
+	private class ArrayListIterator implements ListIterator<T> {
 
 		private int current = 0;
 
@@ -138,6 +139,45 @@ public class MyArrayList<T> implements Iterable<T> {
 		public void remove() {
 			MyArrayList.this.remove(--current);
 		}
+
+		@Override
+		public boolean hasPrevious() {
+			return current > 0;
+		}
+
+		@Override
+		public T previous() {
+			if (!hasPrevious())
+				throw new NoSuchElementException();
+			return theItems[--current];
+		}
+
+		@Override
+		public int nextIndex() {
+			if (!hasNext())
+				return size();
+			else
+				return current;
+		}
+
+		@Override
+		public int previousIndex() {
+			if (!hasPrevious())
+				return -1;
+			else
+				return current - 1;
+		}
+
+		@Override
+		public void set(T e) {
+			theItems[current] = e;
+		}
+
+		@Override
+		public void add(T e) {
+					
+
+		}
 	}
 
 	public static void main(String[] args) {
@@ -145,11 +185,12 @@ public class MyArrayList<T> implements Iterable<T> {
 		list.add(1);
 		list.add(2);
 		list.add(3);
-		Iterator<Integer> iter = list.iterator();
-		while (iter.hasNext())
-			if (iter.next() == 2)
-				iter.remove();
+		ListIterator<Integer> iter = list.iterator();
+		iter.next();
+		iter.set(99);
+		System.out.println(iter.next());
 		list.print();
+
 	}
 
 }
