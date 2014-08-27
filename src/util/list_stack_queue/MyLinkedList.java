@@ -2,6 +2,7 @@ package util.list_stack_queue;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 public class MyLinkedList<T> implements Iterable<T> {
@@ -27,7 +28,7 @@ public class MyLinkedList<T> implements Iterable<T> {
 
 	}
 
-	private class LinkedListIterator implements Iterator<T> {
+	private class LinkedListIterator implements ListIterator<T> {
 
 		private Node<T> current = beginMarker.next;
 		private int expectedModCount = modCount;
@@ -58,6 +59,47 @@ public class MyLinkedList<T> implements Iterable<T> {
 				throw new IllegalStateException();
 			MyLinkedList.this.remove(current.prev);
 			okToRemove = false;
+		}
+
+		@Override
+		public boolean hasPrevious() {
+			return !(current.prev == beginMarker);
+		}
+
+		@Override
+		public T previous() {
+			if (modCount != expectedModCount)
+				throw new ConcurrentModificationException();
+			if (!hasPrevious())
+				throw new NoSuchElementException();
+			current = current.prev;
+			T previousItem = current.data;
+			okToRemove = true;
+			return previousItem;
+		}
+
+		@Override
+		public int nextIndex() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public int previousIndex() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public void set(T e) {
+			current.data = e;
+		}
+
+		@Override
+		public void add(T e) {
+			if (modCount != expectedModCount)
+				throw new ConcurrentModificationException();
+			MyLinkedList.this.addBefore(current, e);
 		}
 
 	}
@@ -147,6 +189,10 @@ public class MyLinkedList<T> implements Iterable<T> {
 		return new LinkedListIterator();
 	}
 
+	public ListIterator<T> listIterator() {
+		return new LinkedListIterator();
+	}
+
 	public Node<T> getBeginMarker() {
 		return beginMarker;
 	}
@@ -165,10 +211,18 @@ public class MyLinkedList<T> implements Iterable<T> {
 		list.addFirst(2);
 		list.addFirst(1);
 		list.addLast(3);
-		Iterator<Integer> iter = list.iterator();
-		while (iter.hasNext())
-			if (iter.next() == 2)
-				iter.remove();
+//		Iterator<Integer> iter = list.iterator();
+//		while (iter.hasNext())
+//			if (iter.next() == 2)
+//				iter.remove();
+//		list.print();
+		ListIterator<Integer> iter = list.listIterator();
 		list.print();
+		System.out.println();
+		iter.next();
+		iter.add(99);
+		System.out.println(iter.next());
+		
+		
 	}
 }
