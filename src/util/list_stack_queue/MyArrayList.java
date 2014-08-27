@@ -117,6 +117,10 @@ public class MyArrayList<T> implements Iterable<T> {
 		return new ArrayListIterator();
 	}
 
+	public Iterator<T> reverseIterator() {
+		return new ArrayListReverseIterator();
+	}
+
 	public void print() {
 		Iterator<T> iteraotr = this.iterator();
 		while (iteraotr.hasNext())
@@ -183,16 +187,43 @@ public class MyArrayList<T> implements Iterable<T> {
 		}
 	}
 
+	private class ArrayListReverseIterator implements Iterator<T> {
+		private int current = size() - 1;
+
+		@Override
+		public boolean hasNext() {
+			return current >= 0;
+		}
+
+		@Override
+		public T next() {
+			if (!hasNext())
+				throw new NoSuchElementException();
+			return theItems[current--];
+		}
+
+		@Override
+		public void remove() {
+			MyArrayList.this.remove(++current);
+		}
+
+	}
+
 	public static void main(String[] args) {
 		MyArrayList<Integer> list = new MyArrayList<Integer>();
 		list.add(1);
 		list.add(2);
 		list.add(3);
-		ListIterator<Integer> iter = list.listIterator();
-		iter.next();
-		iter.add(99);
+		// ListIterator<Integer> iter = list.listIterator();
+		// iter.next();
+		// iter.add(99);
 		// System.out.println(iter.next());
-		System.out.println(iter.previous());
+		// System.out.println(iter.previous());
+		list.print();
+		System.out.println();
+		Iterator<Integer> iter = list.reverseIterator();
+		System.out.println(iter.next());
+		iter.remove();
 		list.print();
 
 	}
