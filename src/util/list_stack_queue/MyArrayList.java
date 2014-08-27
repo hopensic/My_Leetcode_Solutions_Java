@@ -109,7 +109,11 @@ public class MyArrayList<T> implements Iterable<T> {
 		return removedItem;
 	}
 
-	public ListIterator<T> iterator() {
+	public Iterator<T> iterator() {
+		return new ArrayListIterator();
+	}
+
+	public ListIterator<T> listIterator() {
 		return new ArrayListIterator();
 	}
 
@@ -175,8 +179,7 @@ public class MyArrayList<T> implements Iterable<T> {
 
 		@Override
 		public void add(T e) {
-					
-
+			MyArrayList.this.add(current++, e);
 		}
 	}
 
@@ -185,10 +188,11 @@ public class MyArrayList<T> implements Iterable<T> {
 		list.add(1);
 		list.add(2);
 		list.add(3);
-		ListIterator<Integer> iter = list.iterator();
+		ListIterator<Integer> iter = list.listIterator();
 		iter.next();
-		iter.set(99);
-		System.out.println(iter.next());
+		iter.add(99);
+		// System.out.println(iter.next());
+		System.out.println(iter.previous());
 		list.print();
 
 	}
