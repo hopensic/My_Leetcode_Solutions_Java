@@ -13,24 +13,62 @@ public class Ex3_21 {
 	public static final char RIGHT_BRACE = '}';
 
 	public static void main(String[] args) {
-		String str = "/* */";
+		String str = "/**//**/";
+		deal(str);
 
 	}
 
-	public void deal(String str) {
+	public static void deal(String str) {
+
+		boolean isBalanced = true;
 		char[] array = str.toCharArray();
 		int len = array.length;
 		MyStack<Character> stack = new MyStack<Character>();
+		char previous = '\0';
+		char pop1;
+		char pop2;
+
 		for (int i = 0; i < len; i++) {
+			if (!isBalanced) {
+				break;
+			}
 			switch (array[i]) {
 			case SLASH:
-
+				if (previous == WILDCARD) {
+					pop2 = stack.pop();
+					pop1 = stack.pop();
+					if (pop2 != WILDCARD || pop1 != SLASH) {
+						isBalanced = false;
+					}
+				} else {
+					stack.push(SLASH);
+				}
+				previous = SLASH;
 				break;
-
+			case WILDCARD:
+				if (previous == SLASH) {
+					stack.push(WILDCARD);
+				}
+				previous = WILDCARD;
+				break;
+			case LEFT_PARENTHESES:
+				stack.push(LEFT_PARENTHESES);
+				break;
+			case RIGHT_PARENTHESES:
+				if(stack.pop()!=LEFT_PARENTHESES) {
+					isBalanced = false;
+				}
+				break;
+				
 			default:
 				continue;
 			}
 		}
+
+		if (stack.size() > 0)
+			System.out.println("the expression is invalid");
+		else
+			System.out.println("the expression is valid");
 
 	}
 
