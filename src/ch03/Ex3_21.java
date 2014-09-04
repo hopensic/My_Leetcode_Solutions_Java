@@ -13,7 +13,7 @@ public class Ex3_21 {
 	public static final char RIGHT_BRACE = '}';
 
 	public static void main(String[] args) {
-		String str = "/**//**/";
+		String str = "/**//**/(()))";
 		deal(str);
 
 	}
@@ -55,11 +55,14 @@ public class Ex3_21 {
 				stack.push(LEFT_PARENTHESES);
 				break;
 			case RIGHT_PARENTHESES:
-				if(stack.pop()!=LEFT_PARENTHESES) {
+				if (stack.size() == 0) {
+					isBalanced = false;
+					break;
+				}
+				if (stack.pop() != LEFT_PARENTHESES) {
 					isBalanced = false;
 				}
 				break;
-				
 			default:
 				continue;
 			}
@@ -67,9 +70,12 @@ public class Ex3_21 {
 
 		if (stack.size() > 0)
 			System.out.println("the expression is invalid");
-		else
-			System.out.println("the expression is valid");
-
+		else {
+			if (isBalanced)
+				System.out.println("the expression is valid");
+			else
+				System.out.println("the expression is invalid");
+		}
 	}
 
 }
