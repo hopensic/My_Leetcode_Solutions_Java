@@ -27,5 +27,16 @@ public class HouseRobber1
         }
     }
     
+    private int getMax(int[] nums ,int left ,int right){
+        if(right-left>1){
+//            int middle = 
+            return 0;
+        }else if(right==left+1){
+            return nums[left] > nums[right] ? nums[left] : nums[right];
+        }else{
+            return nums[left];
+        }
+    }
+    
     
 }
