@@ -1,4 +1,4 @@
-ds_alg_java test
+ds_alg_java
 ===========
 
 The project is about all the implmentations (using Java Language) of the the exercises in the book
