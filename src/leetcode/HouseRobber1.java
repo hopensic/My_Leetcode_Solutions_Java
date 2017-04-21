@@ -15,28 +15,24 @@ public class HouseRobber1
     public int rob(int[] nums)
     {
         int len = nums.length;
-        if (len == 0)
-            return 0;
-        else if (len == 1)
-            return nums[0];
-        else if (len == 2)
-            return nums[0] > nums[1] ? nums[0] : nums[1];
-        else
-        {
-            return 0;
-        }
+        return getMax(nums, 0, len - 1);
     }
     
-    private int getMax(int[] nums ,int left ,int right){
-        if(right-left>1){
-//            int middle = 
-            return 0;
-        }else if(right==left+1){
+    private int getMax(int[] nums, int left, int right)
+    {
+        if (right - left > 1)
+        {
+            int middle = left + ((right - left) / 2);
+            return getMax(nums, left, middle) + getMax(nums, middle + 1, right);
+        }
+        else if (right == left + 1)
+        {
             return nums[left] > nums[right] ? nums[left] : nums[right];
-        }else{
+        }
+        else
+        {
             return nums[left];
         }
     }
-    
     
 }
