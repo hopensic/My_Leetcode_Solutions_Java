@@ -3,6 +3,8 @@ package leetcode;
 import tools.P;
 import static java.lang.Math.*;
 
+import leetcode.common.tree.TreeNode;
+
 public class LowestCommonAncestorofABinarySearchTree2 {
 	int array_a[] = new int[100];
 	int array_b[] = new int[100];

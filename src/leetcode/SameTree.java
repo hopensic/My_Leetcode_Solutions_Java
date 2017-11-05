@@ -2,6 +2,8 @@ package leetcode;
 
 import java.util.LinkedList;
 
+import leetcode.common.tree.TreeNode;
+
 public class SameTree {
 
 	public static void main(String[] args) {

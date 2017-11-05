@@ -1,5 +1,7 @@
 package leetcode;
 
+import leetcode.common.tree.TreeNode;
+
 public class MaximumDepthofBinaryTree {
 
 	public static void main(String[] args) {
